@@ -1,0 +1,22 @@
+[build-system]
+requires = ["briefcase"]
+
+[tool.briefcase]
+project_name = "Walkman"
+bundle = "com.phildini"
+version = "0.0.1"
+icon = "icons/Hera"
+
+[tool.briefcase.app.walkman]
+formal_name = "Walkman"
+description = "walkman plays datasettes"
+sources = ['walkman']
+requires = ['datasette', 'pip']
+
+[tool.briefcase.app.walkman.macOS]
+requires = ['toga-cocoa==0.3.0.dev19']
+
+[tool.briefcase.app.walkman.document_type.sqlite3]
+icon = "icons/JupyterDoc"
+description = "SQLite3 DB"
+url = "http://jupyter.org/"

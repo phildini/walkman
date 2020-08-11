@@ -1,0 +1,16 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+datasette = "*"
+toga = "==0.3.0.dev19"
+briefcase = "*"
+cookiecutter = "*"
+pathlib = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.7"
