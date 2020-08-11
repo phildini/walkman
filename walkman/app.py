@@ -15,13 +15,6 @@ def install_dependencies(*args, **kwargs):
 
     subprocess.call("pip install numpy", shell=True)
     print("Success")
-    # stdout, stderr = await proc.communicate()
-
-    # print(f'[{cmd!r} exited with {proc.returncode}]')
-    # if stdout:
-    #     print(f'[stdout]\n{stdout.decode()}')
-    # if stderr:
-    #     print(f'[stderr]\n{stderr.decode()}')
 
 
 class Database(toga.Document):
@@ -44,9 +37,7 @@ class Database(toga.Document):
 
     async def start_datasette(self, filename):
         filename = Path(filename)
-        print(filename)
         command = "datasette serve {}".format(filename)
-        print(command)
         self.proc = await asyncio.create_subprocess_shell(
             command,
             stdin=None,
@@ -55,7 +46,6 @@ class Database(toga.Document):
         )
         line = await self.proc.stderr.readline()
         while line:
-            print(line)
             line = line.strip().decode("utf-8")
             if "http" in line:
 
@@ -63,9 +53,6 @@ class Database(toga.Document):
                 for part in parts:
                     if part.startswith("http"):
                         self.webview.url = part
-
-                # url = "{}notebooks/{}".format(url, quote(filename.name))
-                # self.webview.url = url
             line = await self.proc.stderr.readline()
 
 
@@ -73,7 +60,7 @@ class Walkman(toga.DocumentApp):
     def __init__(self):
         resource_dir = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
         super().__init__(
-            "Walkman", document_types={"sqlite3": Database},
+            "Walkman", document_types={"sqlite3": Database, "db": Database},
         )
         os.environ["PIP_TARGET"] = str(self.paths.data / "pkgs")
         sys.path.append(str(self.paths.data / "pkgs"))

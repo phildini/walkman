@@ -20,3 +20,8 @@ requires = ['toga-cocoa==0.3.0.dev19']
 icon = "icons/JupyterDoc"
 description = "SQLite3 DB"
 url = "http://jupyter.org/"
+
+[tool.briefcase.app.walkman.document_type.db]
+icon = "icons/JupyterDoc"
+description = "SQLite3 DB"
+url = "http://jupyter.org/"
